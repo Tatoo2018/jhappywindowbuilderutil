@@ -9,11 +9,12 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
     public void initializeDefaultPreferences() {
       
         IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-        store.setDefault(PreferenceConstants.P_START_X, 10);
+        store.setDefault(PreferenceConstants.P_START_X, 30);
         store.setDefault(PreferenceConstants.P_START_Y, 700);
-        store.setDefault(PreferenceConstants.P_GAP_X, 150);
-        store.setDefault(PreferenceConstants.P_GAP_Y, 30);
-        store.setDefault(PreferenceConstants.P_COLS, 5);
+        store.setDefault(PreferenceConstants.P_GAP_X, 190);
+        store.setDefault(PreferenceConstants.P_GAP_Y, 45);
+        store.setDefault(PreferenceConstants.P_ROWS, 10);
         store.setDefault(PreferenceConstants.P_SORT_BY, PreferenceConstants.V_SORT_BY_NAME);
     }
 }
+

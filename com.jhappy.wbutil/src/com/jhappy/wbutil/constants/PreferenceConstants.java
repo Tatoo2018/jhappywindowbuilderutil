@@ -24,7 +24,7 @@ public class PreferenceConstants {
 
     /** * The maximum number of icons to display per row before wrapping to the next line.
      */
-    public static final String P_COLS = "cols";
+    public static final String P_ROWS = "rows";
     
     /** * Key for sorting strategy (e.g., by field name or by class name). */
     public static final String P_SORT_BY = "sortBy";

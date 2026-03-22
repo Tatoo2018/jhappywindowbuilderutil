@@ -9,7 +9,7 @@ public class Messages extends NLS {
     public static String MainPropertyPage_startY;
     public static String MainPropertyPage_gapX;
     public static String MainPropertyPage_gapY;
-    public static String MainPropertyPage_cols;
+    public static String MainPropertyPage_rows;
     public static String MainPropertyPage_sortBy;
     public static String MainPropertyPage_sortByName;
     public static String MainPropertyPage_sortByClass;

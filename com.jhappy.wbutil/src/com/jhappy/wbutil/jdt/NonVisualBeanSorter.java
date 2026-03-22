@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2026 JHAPPY
+ * Licensed under the MIT License. See LICENSE file in the project root for full license information.
+ */
 package com.jhappy.wbutil.jdt;
 
 import java.util.ArrayList;
@@ -7,7 +11,14 @@ import java.util.List;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.dom.*;
+import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTParser;
+import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.FieldDeclaration;
+import org.eclipse.jdt.core.dom.Javadoc;
+import org.eclipse.jdt.core.dom.Type;
+import org.eclipse.jdt.core.dom.VariableDeclarationFragment;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRewriteTarget;
@@ -24,153 +35,108 @@ import com.jhappy.wbutil.constants.PreferenceConstants;
 
 /**
  * Provides functionality to sort WindowBuilder Non-Visual Beans.
- * Supports multiple sorting strategies such as by field name or class name 
- * based on project-specific preferences.
  */
 public class NonVisualBeanSorter {
 
-	/**
-	 * 
-	 * @param unit
-	 */
-	public static void sort(ICompilationUnit unit) {
+    public static void sort(ICompilationUnit unit) {
+        // ... (ASTの解析・ソートロジックは既存のまま) ...
 
-		ASTParser parser = ASTParser.newParser(AST.getJLSLatest());
-		parser.setSource(unit);
-		CompilationUnit cu = (CompilationUnit) parser.createAST(null);
+        ASTParser parser = ASTParser.newParser(AST.getJLSLatest());
+        parser.setSource(unit);
+        CompilationUnit cu = (CompilationUnit) parser.createAST(null);
 
-		List<NonVisualBean> beans = extractNonVisualBeansComment(cu);
-		
-		//
-		IProject project = unit.getJavaProject().getProject();
-		ScopedPreferenceStore prefStore = new ScopedPreferenceStore(new ProjectScope(project), Activator.PLUGIN_ID);
+        List<NonVisualBeanData> beans = extractNonVisualBeansComment(cu);
+        if (beans.isEmpty()) return;
 
-		// sort
-	    String sortBy = prefStore.getString(PreferenceConstants.P_SORT_BY);
-	    if (sortBy == null || sortBy.isEmpty()) sortBy = PreferenceConstants.V_SORT_BY_NAME;
+        IProject project = unit.getJavaProject().getProject();
+        ScopedPreferenceStore prefStore = new ScopedPreferenceStore(new ProjectScope(project), Activator.PLUGIN_ID);
 
-	    if (PreferenceConstants.V_SORT_BY_CLASS.equals(sortBy)) {
-	        
-	        beans.sort(Comparator.comparing(b -> {
-	            Type type = b.data.node.getType();
-	            return type != null ? type.toString() : "";
-	        }));
-	    } else {
-	        
-	        beans.sort(Comparator.comparing(b -> b.data.fieldName));
-	    }
-		
+        // Sorting Logic based on preferences
+        String sortBy = prefStore.getString(PreferenceConstants.P_SORT_BY);
+        if (sortBy == null || sortBy.isEmpty()) sortBy = PreferenceConstants.V_SORT_BY_NAME;
 
-		int startX = getPref(prefStore, PreferenceConstants.P_START_X, 20);
-		int startY = getPref(prefStore, PreferenceConstants.P_START_Y, 600);
-		int gapX = getPref(prefStore, PreferenceConstants.P_GAP_X, 150);
-		int gapY = getPref(prefStore, PreferenceConstants.P_GAP_Y, 50);
-		int cols = getPref(prefStore, PreferenceConstants.P_COLS, 5);
+        if (PreferenceConstants.V_SORT_BY_CLASS.equals(sortBy)) {
+            beans.sort(Comparator.comparing(b -> {
+                Type type = b.node.getType();
+                return type != null ? type.toString() : "";
+            }));
+        } else {
+            beans.sort(Comparator.comparing(b -> b.fieldName));
+        }
 
-		//
-		IEditorPart editorpart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+        // 設定の取得 (cols から rows に読み替えます)
+        int startX = getPref(prefStore, PreferenceConstants.P_START_X, 10);
+        int startY = getPref(prefStore, PreferenceConstants.P_START_Y, 700);
+        int gapX = getPref(prefStore, PreferenceConstants.P_GAP_X, 190);
+        int gapY = getPref(prefStore, PreferenceConstants.P_GAP_Y, 45);
+        int rows = getPref(prefStore, PreferenceConstants.P_ROWS, 10); // 折り返し行数
 
-		if (editorpart instanceof ITextEditor) {
+        IEditorPart editorpart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
-			ITextEditor textEditor = (ITextEditor) editorpart;
+        if (editorpart instanceof ITextEditor textEditor) {
+            IDocument doc = textEditor.getDocumentProvider().getDocument(textEditor.getEditorInput());
 
-			IDocument doc = textEditor.getDocumentProvider().getDocument(textEditor.getEditorInput());
+            if (doc != null) {
+                IRewriteTarget target = textEditor.getAdapter(IRewriteTarget.class);
+                try {
+                    if (target != null) target.beginCompoundChange();
 
-			if (doc != null) {
-				IRewriteTarget target = textEditor.getAdapter(IRewriteTarget.class);
+                    MultiTextEdit multiEdit = new MultiTextEdit();
 
-				try {
+                    for (int i = 0; i < beans.size(); i++) {
+                        // ★ 行数（rows）に基づいた新しい計算式
+                        // i / rows = 現在の列番号
+                        // i % rows = 現在の行番号
+                        int nx = startX + (i / rows) * gapX;
+                        int ny = startY + (i % rows) * gapY;
 
-					target.beginCompoundChange();
+                        NonVisualBeanData bean = beans.get(i);
+                        Javadoc javadoc = bean.node.getJavadoc();
 
-					MultiTextEdit multiEdit = new MultiTextEdit();
+                        int offset = javadoc.getStartPosition();
+                        int length = javadoc.getLength();
 
-					for (int i = 0; i < beans.size(); i++) {
+                        String oldComment = doc.get(offset, length);
+                        String newComment = oldComment.replaceAll("location=\\d+,\\d+", "location=" + nx + "," + ny);
 
-						int nx = startX + (i % cols) * gapX;
-						int ny = startY + (i / cols) * gapY;
+                        if (!oldComment.equals(newComment)) {
+                            multiEdit.addChild(new ReplaceEdit(offset, length, newComment));
+                        }
+                    }
 
-						NonVisualBean bean = beans.get(i);
-						Javadoc javadoc = bean.data.node.getJavadoc();
+                    if (multiEdit.hasChildren()) {
+                        multiEdit.apply(doc);
+                    }
 
-						int offset = javadoc.getStartPosition();
-						int length = javadoc.getLength();
+                } catch (MalformedTreeException | BadLocationException e) {
+                    Activator.logError("Failed to replace non-visual bean comment", e);
+                } finally {
+                    if (target != null) target.endCompoundChange();
+                }
+            }
+        }
+    }
 
-						String oldComment;
+    // ... (以下 extractNonVisualBeansComment と getPref は既存のまま) ...
+    private static List<NonVisualBeanData> extractNonVisualBeansComment(CompilationUnit cu) {
+        List<NonVisualBeanData> beans = new ArrayList<>();
+        cu.accept(new ASTVisitor() {
+            @Override
+            public boolean visit(FieldDeclaration node) {
+                Javadoc javadoc = node.getJavadoc();
+                if (javadoc != null && javadoc.toString().contains("@wbp.nonvisual")) {
+                    VariableDeclarationFragment frag = (VariableDeclarationFragment) node.fragments().get(0);
+                    String fieldName = frag.getName().getIdentifier();
+                    beans.add(new NonVisualBeanData(fieldName, node));
+                }
+                return true;
+            }
+        });
+        return beans;
+    }
 
-						oldComment = doc.get(offset, length);
-
-						String newComment = oldComment.replaceAll("location=\\d+,\\d+", "location=" + nx + "," + ny);
-
-						multiEdit.addChild(new ReplaceEdit(offset, length, newComment));
-
-					}
-
-					multiEdit.apply(doc);
-				
-				} catch (MalformedTreeException e) {
-					Activator.logError("failed to replace non visual bean comment", e);
-				} catch (BadLocationException e) {
-					Activator.logError("failed to replace non visual bean comment", e);
-
-				} finally {
-					if (target != null) {
-						target.endCompoundChange();
-					}
-						
-				}
-			}
-		}
-
-	}
-
-	/**
-	 * @param cu
-	 * @return
-	 */
-	private static List<NonVisualBean> extractNonVisualBeansComment(CompilationUnit cu) {
-
-		List<NonVisualBean> beans = new ArrayList<>();
-
-		cu.accept(new ASTVisitor() {
-			@Override
-			public boolean visit(FieldDeclaration node) {
-				Javadoc javadoc = node.getJavadoc();
-				if (javadoc != null && javadoc.toString().contains("@wbp.nonvisual")) {
-					VariableDeclarationFragment frag = (VariableDeclarationFragment) node.fragments().get(0);
-					String fieldName = frag.getName().getIdentifier();
-					beans.add(new NonVisualBean(fieldName, node));
-				}
-				return true;
-			}
-		});
-
-		return beans;
-	}
-
-	/**
-	 * 
-	 * @param store
-	 * @param key
-	 * @param defaultValue
-	 * @return
-	 */
-	private static int getPref(ScopedPreferenceStore store, String key, int defaultValue) {
-		int val = store.getInt(key);
-		return (val == 0) ? defaultValue : val;
-	}
-}
-
-
-/**
- * 
- */
-class NonVisualBean {
-	
-	NonVisualBeanData data = new NonVisualBeanData();
-
-	NonVisualBean(String name, FieldDeclaration node) {
-		this.data.fieldName = name;
-		this.data.node = node;
-	}
+    private static int getPref(ScopedPreferenceStore store, String key, int defaultValue) {
+        int val = store.getInt(key);
+        return (val == 0) ? defaultValue : val;
+    }
 }

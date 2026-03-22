@@ -47,7 +47,7 @@ public class MainPropertyPage extends FieldEditorPreferencePage implements IWork
         addField(new IntegerFieldEditor(PreferenceConstants.P_START_Y, Messages.MainPropertyPage_startY, getFieldEditorParent()));
         addField(new IntegerFieldEditor(PreferenceConstants.P_GAP_X, Messages.MainPropertyPage_gapX, getFieldEditorParent()));
         addField(new IntegerFieldEditor(PreferenceConstants.P_GAP_Y, Messages.MainPropertyPage_gapY, getFieldEditorParent()));
-        addField(new IntegerFieldEditor(PreferenceConstants.P_COLS, Messages.MainPropertyPage_cols, getFieldEditorParent()));
+        addField(new IntegerFieldEditor(PreferenceConstants.P_ROWS, Messages.MainPropertyPage_rows, getFieldEditorParent()));
 
         // Sorting Strategy Settings
         addField(new RadioGroupFieldEditor(
