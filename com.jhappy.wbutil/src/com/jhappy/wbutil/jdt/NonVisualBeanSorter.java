@@ -39,7 +39,7 @@ import com.jhappy.wbutil.constants.PreferenceConstants;
 public class NonVisualBeanSorter {
 
     public static void sort(ICompilationUnit unit) {
-        // ... (ASTの解析・ソートロジックは既存のまま) ...
+
 
         ASTParser parser = ASTParser.newParser(AST.getJLSLatest());
         parser.setSource(unit);
@@ -64,12 +64,12 @@ public class NonVisualBeanSorter {
             beans.sort(Comparator.comparing(b -> b.fieldName));
         }
 
-        // 設定の取得 (cols から rows に読み替えます)
+        //
         int startX = getPref(prefStore, PreferenceConstants.P_START_X, 10);
         int startY = getPref(prefStore, PreferenceConstants.P_START_Y, 700);
         int gapX = getPref(prefStore, PreferenceConstants.P_GAP_X, 190);
         int gapY = getPref(prefStore, PreferenceConstants.P_GAP_Y, 45);
-        int rows = getPref(prefStore, PreferenceConstants.P_ROWS, 10); // 折り返し行数
+        int rows = getPref(prefStore, PreferenceConstants.P_ROWS, 10); 
 
         IEditorPart editorpart = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
@@ -117,7 +117,7 @@ public class NonVisualBeanSorter {
         }
     }
 
-    // ... (以下 extractNonVisualBeansComment と getPref は既存のまま) ...
+    //
     private static List<NonVisualBeanData> extractNonVisualBeansComment(CompilationUnit cu) {
         List<NonVisualBeanData> beans = new ArrayList<>();
         cu.accept(new ASTVisitor() {

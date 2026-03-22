@@ -30,7 +30,7 @@ public class AlignBeansHandler extends AbstractHandler{
 	    	
 	        ICompilationUnit cu = (ICompilationUnit) element;
 
-	        // Delegate the sorting and formatting logic to the JDT-based sorter
+
 	        NonVisualBeanSorter.sort(cu);
 
 	      
