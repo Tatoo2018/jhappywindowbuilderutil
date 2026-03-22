@@ -15,6 +15,12 @@
 **Project-Specific Settings:** Configure different layout coordinates (X, Y) and spacing (Gap X, Gap Y) for each project via Property Pages. 
 **Multilingual UI:** Fully supports English, Japanese, and Chinese environments. 
 
+<a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
+  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
+</a>
+
+[Click here to watch](https://www.youtube.com/watch?v=Dg_lI96hBig)
+
 ## 📥 Installation
 
 1. In Eclipse, go to **Help** > **Install New Software...**.
