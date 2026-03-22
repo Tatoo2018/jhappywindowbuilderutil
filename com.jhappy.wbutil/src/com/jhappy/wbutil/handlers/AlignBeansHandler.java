@@ -33,6 +33,7 @@ public class AlignBeansHandler extends AbstractHandler{
 	        // Delegate the sorting and formatting logic to the JDT-based sorter
 	        NonVisualBeanSorter.sort(cu);
 
+	      
 	    }
 	    return null;
 	}

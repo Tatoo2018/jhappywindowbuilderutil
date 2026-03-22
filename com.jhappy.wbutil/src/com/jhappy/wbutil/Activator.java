@@ -11,7 +11,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.jhappy.wpsort"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.jhappy.wbutil"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
