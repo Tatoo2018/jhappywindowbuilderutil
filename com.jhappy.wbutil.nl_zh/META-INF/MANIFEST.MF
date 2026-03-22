@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JHappy wputil Japanese Support
+Bundle-Version: 0.0.1.qualifier
+Eclipse-BundleShape: jar
+Bundle-Vendor: JHAPPY
+Fragment-Host: com.jhappy.wbutil;bundle-version="0.0.1"
+Automatic-Module-Name: com.jhappy.wbutil.zh.ja
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-SymbolicName: com.jhappy.wbutil.nl_zh

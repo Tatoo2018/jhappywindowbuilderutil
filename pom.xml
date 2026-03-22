@@ -18,6 +18,8 @@
 
     <modules>
         <module>com.jhappy.wbutil</module>
+        <module>com.jhappy.wbutil.nl_ja</module>
+         <module>com.jhappy.wbutil.nl_zh</module>
         <module>com.jhappy.wbutil.feature</module>
         <module>com.jhappy.wbutil.updatesite</module>
 
