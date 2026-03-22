@@ -16,8 +16,9 @@
 **Multilingual UI:** Fully supports English, Japanese, and Chinese environments. 
 
 <a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
-  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
+  <img src="https://github.com/user-attachments/assets/3d4d1218-0210-486c-84b4-26ba89761521" alt="Watch the video" style="width:400px; max-width:500px;">
 </a>
+
 
 [Click here to watch a video on YouTube](https://www.youtube.com/watch?v=Dg_lI96hBig)
 
@@ -64,8 +65,9 @@ It utilizes libraries from the Eclipse Foundation licensed under the **EPL-2.0**
 
 
 <a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
-  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
+  <img src="https://github.com/user-attachments/assets/3d4d1218-0210-486c-84b4-26ba89761521" alt="Watch the video" style="width:400px; max-width:500px;">
 </a>
+
 
 [Click here to watch a video on YouTube](https://www.youtube.com/watch?v=Dg_lI96hBig)
 
@@ -94,8 +96,9 @@ It utilizes libraries from the Eclipse Foundation licensed under the **EPL-2.0**
 **多语言支持:** UI 完全支持中文、英文和日文环境。 
 
 <a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
-  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
+  <img src="https://github.com/user-attachments/assets/3d4d1218-0210-486c-84b4-26ba89761521" alt="Watch the video" style="width:400px; max-width:500px;">
 </a>
+
 
 [Click here to watch a video on YouTube](https://www.youtube.com/watch?v=Dg_lI96hBig)
 
