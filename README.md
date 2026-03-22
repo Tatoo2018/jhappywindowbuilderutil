@@ -62,6 +62,15 @@ It utilizes libraries from the Eclipse Foundation licensed under the **EPL-2.0**
 **プロジェクト別設定:** プロジェクトの「プロパティ」から、開始座標、間隔、整列ルールを個別に保存できます。 
 **多言語対応:** メニュー、設定画面ともに日本語・英語・中国語に対応しています。 
 
+<a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
+  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
+</a>
+
+<a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
+  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
+</a>
+[Click here to watch a video on YouTube](https://www.youtube.com/watch?v=Dg_lI96hBig)
+
 ## 📥 インストール方法
 1. Eclipseを起動し、 **[ヘルプ]** > **[新規ソフトウェアのインストール...]** を選択します。
 2. **[追加...]** をクリックし、ロケーションに以下を入力します：
@@ -85,6 +94,11 @@ It utilizes libraries from the Eclipse Foundation licensed under the **EPL-2.0**
 **智能排序:** 支持按 **变量名**（字母顺序）或 **类类型** 进行排序，助您快速定位组件。
 **项目专属设置:** 可通过项目属性页为不同项目配置不同的起始坐标 (X, Y) 和间距 (Gap X, Gap Y)。
 **多语言支持:** UI 完全支持中文、英文和日文环境。 
+
+<a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
+  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
+</a>
+[Click here to watch a video on YouTube](https://www.youtube.com/watch?v=Dg_lI96hBig)
 
 ## 📥 安装方法
 1. 在 Eclipse 中，前往 **Help (帮助)** > **Install New Software... (安装新软件...)**。
