@@ -62,9 +62,6 @@ It utilizes libraries from the Eclipse Foundation licensed under the **EPL-2.0**
 **プロジェクト別設定:** プロジェクトの「プロパティ」から、開始座標、間隔、整列ルールを個別に保存できます。 
 **多言語対応:** メニュー、設定画面ともに日本語・英語・中国語に対応しています。 
 
-<a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
-  <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
-</a>
 
 <a href="https://www.youtube.com/watch?v=Dg_lI96hBig" style="width:500px;display:block;">
   <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
