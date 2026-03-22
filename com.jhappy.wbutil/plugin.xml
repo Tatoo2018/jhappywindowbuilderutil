@@ -9,6 +9,7 @@
 			<command
 				commandId="com.jhappy.wbutil.commands.alignBeans"
 				label="%command.label"
+				icon="icons/ChooseComponent.gif"
 				style="push">
 
 			</command>
@@ -21,6 +22,7 @@
       <command
             commandId="com.jhappy.wbutil.commands.alignBeans"
             label="%command.label"
+            icon="icons/ChooseComponent.gif"
             style="push">
       </command>
    </menuContribution>
