@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			allPopups="false"
+			locationURI="popup:org.eclipse.jdt.ui.CompilationUnitEditor.EditorContext?after=additions">
+			<command
+				commandId="com.jhappy.wbutil.commands.alignBeans"
+				label="Non-Visual Beanを整列"
+				style="push">
+
+			</command>
+		</menuContribution>
+	</extension>
+
+	<extension point="org.eclipse.ui.commands">
+		<command
+			id="com.jhappy.wbutil.commands.alignBeans"
+			name="Align Non-Visual Beans">
+		</command>
+	</extension>
+
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="com.jhappy.wbutil.handlers.AlignBeansHandler"
+			commandId="com.jhappy.wbutil.commands.alignBeans">
+		</handler>
+	</extension>
+	
+	<extension point="org.eclipse.ui.propertyPages">
+   <page
+         id="com.jhappy.wbutil.properties.MainPropertyPage"
+         name="WindowBuilder Bean Sort 設定"
+         class="com.jhappy.wbutil.properties.MainPropertyPage">
+      <enabledWhen>
+         <adapt type="org.eclipse.core.resources.IProject"/>
+      </enabledWhen>
+   </page>
+</extension>
+
+<extension point="org.eclipse.core.runtime.preferences">
+   <initializer class="com.jhappy.wbutil.PreferenceInitializer"/>
+</extension>
+
+</plugin>

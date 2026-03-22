@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.jhappy.wbutil.feature_1.0.0.202603220848.jar" id="com.jhappy.wbutil.feature" version="1.0.0.202603220848">
+      <category name="tool"/>
+   </feature>
+   <category-def name="tool" label="TOOL"/>
+</site>
