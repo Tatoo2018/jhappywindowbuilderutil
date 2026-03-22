@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
+   <description name="JHappy WindowBuilder Util">
+      Description:
+This plugin provides a utility to automatically align Non-Visual Beans within the WindowBuilder editor. It extracts beans marked with the &quot;@wbp.nonvisual&quot; tag and rearranges their layout coordinates based on customizable preferences. Users can define the starting position, spacing, and wrapping rows, as well as sort beans by field name or class type. This tool ensures a clean and organized design environment by preventing overlapping icons in the graphical editor.
+
+説明:
+このプラグインは、WindowBuilderエディタ内の「Non-Visual Bean」を自動的に整列させるユーティリティを提供します 。ソースコード内の &quot;@wbp.nonvisual&quot; タグが付与された要素を抽出し、設定画面で指定した座標や間隔に基づいてレイアウトを再配置します 。開始座標、間隔、折り返し行数の設定に加えて、変数名順またはクラス型順でのソートが可能です 。グラフィカルエディタ上でのアイコンの重なりを防ぎ、設計環境をクリーンに保ちます 。
+
+说明:
+此插件提供了一个用于在 WindowBuilder 编辑器中自动整列“非可视化 Bean (Non-Visual Beans)”的实用工具 。它能够提取带有 &quot;@wbp.nonvisual&quot; 标签的组件，并根据用户自定义的参数重新排列其布局坐标 。用户可以设置起始坐标、间距和换行行数，并支持按变量名或类类型进行排序 。该工具通过防止图形编辑器中的图标重叠，确保设计环境的整洁有序
+   </description>
    <feature url="features/com.jhappy.wbutil.feature_1.0.0.202603220848.jar" id="com.jhappy.wbutil.feature" version="1.0.0.202603220848">
       <category name="tool"/>
    </feature>
