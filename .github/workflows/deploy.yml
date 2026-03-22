@@ -14,7 +14,7 @@ permissions:
 
   # Git Hub Pagesに公開する対象フォルダ
 env:
-  REPOSITORY_PATH: com.jhappy.jhappywbutil.updatesite/target/repository
+  REPOSITORY_PATH: com.jhappy.wbutil.updatesite/target/repository
 
 jobs:
   build:
