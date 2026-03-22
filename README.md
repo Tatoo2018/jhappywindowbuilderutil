@@ -26,7 +26,7 @@
 
 ## 🚀 How to Use
 1. Open a Java class with the **WindowBuilder Editor**.
-2. Switch to the **Design** tab (or stay in the **Source** tab).
+2. Switch to the **Source** tab.
 3. Right-click anywhere in the editor and select **🤖 Align Non-Visual Beans**. 
 4. The `@wbp.nonvisual` Javadoc tags in your source code will be updated with new `location` coordinates. 
 
@@ -64,7 +64,7 @@ It utilizes libraries from the Eclipse Foundation licensed under the **EPL-2.0**
 
 ## 🚀 使い方
 1. WindowBuilderエディタでJavaファイルを開きます。
-2. **[Design]** タブまたは **[Source]** タブで右クリックします。
+2. **[Source]** タブで右クリックします。
 3. **🤖 Non-Visual Beanを整列** を選択します。 
 
 ---
@@ -88,5 +88,5 @@ It utilizes libraries from the Eclipse Foundation licensed under the **EPL-2.0**
 
 ## 🚀 如何使用
 1. 使用 **WindowBuilder 编辑器** 打开 Java 类。
-2. 切换到 **Design (设计)** 选项卡（或保留在 **Source (源码)** 选项卡）。
+2. 切换到 **Source (源码)** 选项卡
 3. 在编辑器中右键点击，选择 **🤖 整列非可视化 Bean**。 
