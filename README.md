@@ -19,7 +19,7 @@
   <img src="https://img.youtube.com/vi/Dg_lI96hBig/0.jpg" alt="Watch the video" style="width:400px; max-width:500px;">
 </a>
 
-[Click here to watch](https://www.youtube.com/watch?v=Dg_lI96hBig)
+[Click here to watch a video on YouTube](https://www.youtube.com/watch?v=Dg_lI96hBig)
 
 ## 📥 Installation
 
